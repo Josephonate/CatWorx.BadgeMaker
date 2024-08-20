@@ -1,23 +1,41 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CatWorx.BadgeMaker
 {
     class Program
     {
-        static void Main(string[] args)
+        static List<string> GetEmployees()
         {
-            List<string> employees = new List<string>() { "adam", "amy" };
+            List<string> employees = new List<string>();
+            while (true)
+            {
 
-            employees.Add("barbara");
-            employees.Add("billy");
+                Console.WriteLine("Please enter a name: (leave empty to exit): ");
 
-            Console.WriteLine("My employees are:");
-            Console.WriteLine("***************");
-            
+                string input = Console.ReadLine() ?? "";
+
+                if (input == "")
+                {
+                    break;
+                }
+                employees.Add(input);
+            }
+            return employees;
+        }
+
+        static void PrintEmployees(List<string> employees)
+        {
             for (int i = 0; i < employees.Count; i++)
             {
                 Console.WriteLine(employees[i]);
             }
+        }
+
+        static void Main(string[] args)
+        {
+            List<string> employees = GetEmployees();
+            PrintEmployees(employees);
         }
     }
 }
